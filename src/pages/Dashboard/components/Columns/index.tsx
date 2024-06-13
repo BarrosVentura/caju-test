@@ -8,7 +8,7 @@ const allColumns = [
 ];
 
 type Props = {
-  registrations?: any[];
+  registrations: Registration[];
 };
 export function Collumns({ registrations }: Props) {
   return (
@@ -34,4 +34,13 @@ export function Collumns({ registrations }: Props) {
       })}
     </Container>
   );
+}
+
+interface Registration {
+  admissionDate: string;
+  email: string;
+  employeeName: string;
+  status: "APPROVED" | "REVIEW" | "REPROVED";
+  cpf: string;
+  id: string;
 }

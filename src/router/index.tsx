@@ -8,7 +8,7 @@ const Router = () => {
     <div style={{ marginTop: 64 }}>
       <HashRouter>
         <Switch>
-          <Route exact path={routes.dashboard} component={DashboardPage} />
+          <Route path={routes.dashboard} component={DashboardPage} />
           <Route exact path={routes.newUser} component={NewUserPage} />
           <Route
             exact

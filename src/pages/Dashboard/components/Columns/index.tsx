@@ -1,6 +1,6 @@
 import { filterRegistration } from "~/utils/filterRegistration";
-import RegistrationCard from "../RegistrationCard";
 import { ColumnContent, Column, Container, TitleColumn } from "./styles";
+import { RegistrationCard } from "../RegistrationCard";
 
 const allColumns = [
   { status: "REVIEW", title: "Pronto para revisar" },

@@ -1,4 +1,5 @@
 import { api } from "~/lib/axios";
+import { Status } from "~/types/enums";
 
 export function getRegistrations(aCPF: string | null) {
   return api.get<Registration[]>("/registrations", {
@@ -8,11 +9,32 @@ export function getRegistrations(aCPF: string | null) {
   });
 }
 
+export function updateRegistrationStatus({
+  registration,
+  status,
+}: {
+  registration: Registration;
+  status: keyof typeof Status;
+}) {
+  return api.put(
+    `/registrations/${registration.id}`,
+    {
+      ...registration,
+      status,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+}
+
 interface Registration {
   admissionDate: string;
   email: string;
   employeeName: string;
-  status: "APPROVED" | "REVIEW" | "REPROVED";
+  status: keyof typeof Status;
   cpf: string;
   id: string;
 }

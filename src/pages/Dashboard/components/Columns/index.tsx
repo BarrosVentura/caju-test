@@ -9,7 +9,7 @@ const allColumns = [
 ];
 
 type Props = {
-  registrations: Registration[];
+  registrations?: Registration[];
 };
 export function Columns({ registrations }: Props) {
   return (
@@ -20,7 +20,7 @@ export function Columns({ registrations }: Props) {
             <>
               <TitleColumn status={status}>{title}</TitleColumn>
               <ColumnContent>
-                {filterRegistration(registrations, status).map(
+                {filterRegistration(registrations, status)?.map(
                   (registration) => (
                     <RegistrationCard
                       data={registration}

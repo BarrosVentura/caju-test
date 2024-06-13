@@ -19,6 +19,7 @@ export function SearchBar() {
     register,
     watch,
     formState: { errors },
+    setValue,
   } = useForm<CpfSchema>({
     resolver: zodResolver(cpfSchema),
   });
@@ -42,6 +43,7 @@ export function SearchBar() {
           aria-label="refetch"
           onClick={() => {
             queryClient.invalidateQueries();
+            setValue("cpf", "");
             history.replace(routes.dashboard);
           }}
         >

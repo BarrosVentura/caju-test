@@ -10,7 +10,7 @@ const allColumns = [
 type Props = {
   registrations?: any[];
 };
-function Collumns({ registrations }: Props) {
+export function Collumns({ registrations }: Props) {
   return (
     <Container>
       {allColumns.map(({ status, title }) => {
@@ -35,4 +35,3 @@ function Collumns({ registrations }: Props) {
     </Container>
   );
 }
-export default Collumns;

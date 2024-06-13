@@ -1,10 +1,10 @@
 import { HiRefresh } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
 import { IconButton } from "~/components/Buttons/IconButton";
-import TextField from "~/components/TextField";
-import routes from "~/router/routes";
 import { Button } from "~/components/Buttons";
 import { Actions, Container } from "./styles";
+import { routes } from "~/router/routes";
+import { TextField } from "~/components/TextField";
 
 export function SearchBar() {
   const history = useHistory();

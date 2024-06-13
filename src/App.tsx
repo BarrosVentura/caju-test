@@ -1,7 +1,7 @@
 import Router from "~/router";
-import { Header } from "./components/Header";
+import Header from "./components/Header";
 
-function App() {
+export function App() {
   return (
     <>
       <Header>
@@ -11,5 +11,3 @@ function App() {
     </>
   );
 }
-
-export default App;

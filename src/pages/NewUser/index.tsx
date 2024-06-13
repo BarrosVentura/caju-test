@@ -1,9 +1,9 @@
-import TextField from "~/components/TextField";
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import { useHistory } from "react-router-dom";
-import routes from "~/router/routes";
 import { Button } from "~/components/Buttons";
 import { Card, Container } from "./styles";
+import { routes } from "~/router/routes";
+import { TextField } from "~/components/TextField";
 
 export function NewUserPage() {
   const history = useHistory();

@@ -6,7 +6,7 @@ type Props = {
   error?: string;
 } & InputHTMLAttributes<any>;
 
-function TextField({ id, label, error, ...rest }: Props) {
+export function TextField({ id, label, error, ...rest }: Props) {
   return (
     <div>
       <label htmlFor={id}>{label}</label>
@@ -15,5 +15,3 @@ function TextField({ id, label, error, ...rest }: Props) {
     </div>
   );
 }
-
-export default TextField;

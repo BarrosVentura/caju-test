@@ -1,28 +1,25 @@
-
-import * as S from "./styles";
 import RegistrationCard from "../RegistrationCard";
+import { CollumContent, Column, Container, TitleColumn } from "./styles";
 
 const allColumns = [
-  { status: 'REVIEW', title: "Pronto para revisar" },
-  { status: 'APPROVED', title: "Aprovado" },
-  { status: 'REPROVED', title: "Reprovado" },
+  { status: "REVIEW", title: "Pronto para revisar" },
+  { status: "APPROVED", title: "Aprovado" },
+  { status: "REPROVED", title: "Reprovado" },
 ];
 
 type Props = {
   registrations?: any[];
 };
-const Collumns = (props: Props) => {
+function Collumns({ registrations }: Props) {
   return (
-    <S.Container>
-      {allColumns.map((collum) => {
+    <Container>
+      {allColumns.map(({ status, title }) => {
         return (
-          <S.Column status={collum.status} key={collum.title}>
+          <Column status={status} key={title}>
             <>
-              <S.TitleColumn status={collum.status}>
-                {collum.title}
-              </S.TitleColumn>
-              <S.CollumContent>
-                {props?.registrations?.map((registration) => {
+              <TitleColumn status={status}>{title}</TitleColumn>
+              <CollumContent>
+                {registrations?.map((registration) => {
                   return (
                     <RegistrationCard
                       data={registration}
@@ -30,12 +27,12 @@ const Collumns = (props: Props) => {
                     />
                   );
                 })}
-              </S.CollumContent>
+              </CollumContent>
             </>
-          </S.Column>
+          </Column>
         );
       })}
-    </S.Container>
+    </Container>
   );
-};
+}
 export default Collumns;

@@ -1,11 +1,11 @@
-import { ButtonSmall } from "~/components/Buttons";
-import * as S from "./styles";
 import {
   HiOutlineMail,
   HiOutlineUser,
   HiOutlineCalendar,
   HiOutlineTrash,
 } from "react-icons/hi";
+import { Actions, Card, IconAndText } from "./styles";
+import { Button } from "~/components/Buttons";
 
 type Props = {
   data: any;
@@ -13,27 +13,27 @@ type Props = {
 
 const RegistrationCard = (props: Props) => {
   return (
-    <S.Card>
-      <S.IconAndText>
+    <Card>
+      <IconAndText>
         <HiOutlineUser />
         <h3>{props.data.employeeName}</h3>
-      </S.IconAndText>
-      <S.IconAndText>
+      </IconAndText>
+      <IconAndText>
         <HiOutlineMail />
         <p>{props.data.email}</p>
-      </S.IconAndText>
-      <S.IconAndText>
+      </IconAndText>
+      <IconAndText>
         <HiOutlineCalendar />
         <span>{props.data.admissionDate}</span>
-      </S.IconAndText>
-      <S.Actions>
-        <ButtonSmall bgcolor="rgb(255, 145, 154)" >Reprovar</ButtonSmall>
-        <ButtonSmall bgcolor="rgb(155, 229, 155)">Aprovar</ButtonSmall>
-        <ButtonSmall bgcolor="#ff8858">Revisar novamente</ButtonSmall>
+      </IconAndText>
+      <Actions>
+        <Button.Small bgcolor="rgb(255, 145, 154)">Reprovar</Button.Small>
+        <Button.Small bgcolor="rgb(155, 229, 155)">Aprovar</Button.Small>
+        <Button.Small bgcolor="#ff8858">Revisar novamente</Button.Small>
 
         <HiOutlineTrash />
-      </S.Actions>
-    </S.Card>
+      </Actions>
+    </Card>
   );
 };
 

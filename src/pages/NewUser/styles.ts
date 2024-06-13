@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import { _IconButtonStyled } from "~/components/Buttons/IconButton";
-import Button from "~/components/Buttons";
-
+import { ButtonDefault, IconButtonStyled } from "~/components/Buttons/styles";
 
 export const Container = styled.div`
   display: flex;
@@ -18,13 +16,13 @@ export const Card = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
- 
-  ${_IconButtonStyled} {
+
+  ${IconButtonStyled} {
     margin-bottom: 8px;
     align-items: flex-start;
   }
 
-  ${Button}{
+  ${ButtonDefault} {
     align-self: flex-end;
   }
 `;

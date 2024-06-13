@@ -1,13 +1,12 @@
 import Collumns from "./components/Columns";
-import * as S from "./styles";
 import { SearchBar } from "./components/Searchbar";
+import { Container } from "./styles";
 
-const DashboardPage = () => {
+export function DashboardPage() {
   return (
-    <S.Container>
+    <Container>
       <SearchBar />
       <Collumns registrations={[]} />
-    </S.Container>
+    </Container>
   );
-};
-export default DashboardPage;
+}

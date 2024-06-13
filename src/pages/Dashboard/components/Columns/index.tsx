@@ -1,5 +1,6 @@
+import { filterRegistration } from "~/utils/filterRegistration";
 import RegistrationCard from "../RegistrationCard";
-import { CollumContent, Column, Container, TitleColumn } from "./styles";
+import { ColumnContent, Column, Container, TitleColumn } from "./styles";
 
 const allColumns = [
   { status: "REVIEW", title: "Pronto para revisar" },
@@ -10,7 +11,7 @@ const allColumns = [
 type Props = {
   registrations: Registration[];
 };
-export function Collumns({ registrations }: Props) {
+export function Columns({ registrations }: Props) {
   return (
     <Container>
       {allColumns.map(({ status, title }) => {
@@ -18,16 +19,16 @@ export function Collumns({ registrations }: Props) {
           <Column status={status} key={title}>
             <>
               <TitleColumn status={status}>{title}</TitleColumn>
-              <CollumContent>
-                {registrations?.map((registration) => {
-                  return (
+              <ColumnContent>
+                {filterRegistration(registrations, status).map(
+                  (registration) => (
                     <RegistrationCard
                       data={registration}
                       key={registration.id}
                     />
-                  );
-                })}
-              </CollumContent>
+                  )
+                )}
+              </ColumnContent>
             </>
           </Column>
         );
@@ -36,7 +37,7 @@ export function Collumns({ registrations }: Props) {
   );
 }
 
-interface Registration {
+export interface Registration {
   admissionDate: string;
   email: string;
   employeeName: string;

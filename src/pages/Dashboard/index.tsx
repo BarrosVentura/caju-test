@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Collumns } from "./components/Columns";
+import { Columns } from "./components/Columns";
 import { SearchBar } from "./components/Searchbar";
 import { Container } from "./styles";
 import { getRegistrations } from "~/services/registrations";
@@ -27,7 +27,7 @@ export function DashboardPage() {
   return (
     <Container>
       <SearchBar />
-      <Collumns registrations={data.data} />
+      <Columns registrations={data.data} />
     </Container>
   );
 }

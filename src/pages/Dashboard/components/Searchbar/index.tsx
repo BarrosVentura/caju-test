@@ -42,7 +42,7 @@ export function SearchBar() {
           aria-label="refetch"
           onClick={() => {
             queryClient.invalidateQueries();
-            history.push(routes.dashboard);
+            history.replace(routes.dashboard);
           }}
         >
           <HiRefresh />

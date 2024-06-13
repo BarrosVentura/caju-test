@@ -8,7 +8,10 @@ import { Actions, Card, IconAndText } from "./styles";
 import { Button } from "~/components/Buttons";
 import { Registration } from "../Columns";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateRegistrationStatus } from "~/services/registrations";
+import {
+  deleteRegistration,
+  updateRegistrationStatus,
+} from "~/services/registrations";
 
 type Props = {
   data: Registration;
@@ -19,6 +22,14 @@ export function RegistrationCard({ data }: Props) {
   const mutation = useMutation({
     mutationFn: updateRegistrationStatus,
     mutationKey: ["update-registration", data.id],
+    onSuccess() {
+      queryClient.invalidateQueries();
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: deleteRegistration,
+    mutationKey: ["delete-registration", data.id],
     onSuccess() {
       queryClient.invalidateQueries();
     },
@@ -73,7 +84,11 @@ export function RegistrationCard({ data }: Props) {
           Revisar novamente
         </Button.Small>
 
-        <HiOutlineTrash />
+        <HiOutlineTrash
+          onClick={() => {
+            deleteMutation.mutate(data.id);
+          }}
+        />
       </Actions>
     </Card>
   );

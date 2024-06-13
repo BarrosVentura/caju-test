@@ -30,6 +30,10 @@ export function updateRegistrationStatus({
   );
 }
 
+export function deleteRegistration(id: string) {
+  return api.delete(`/registrations/${id}`);
+}
+
 interface Registration {
   admissionDate: string;
   email: string;

@@ -37,7 +37,6 @@ export function NewUserPage() {
   };
 
   function handleSendNewRegistration(data: RegistrationSchema) {
-    console.log({ data });
     mutation.mutate({
       registration: {
         ...data,

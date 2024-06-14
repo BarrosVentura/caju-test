@@ -2,39 +2,18 @@ import {
   HiOutlineMail,
   HiOutlineUser,
   HiOutlineCalendar,
-  HiOutlineTrash,
 } from "react-icons/hi";
 import { Actions, Card, IconAndText } from "./styles";
-import { Button } from "~/components/Buttons";
 import { Registration } from "../Columns";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import {
-  deleteRegistration,
-  updateRegistrationStatus,
-} from "~/services/registrations";
+import { DeleteButton } from "./DeleteButton";
+import { ReviewedActions } from "./ReviewedActions";
+import { ReviewerActions } from "./ReviewerActions";
 
 type Props = {
   data: Registration;
 };
 
 export function RegistrationCard({ data }: Props) {
-  const queryClient = useQueryClient();
-  const mutation = useMutation({
-    mutationFn: updateRegistrationStatus,
-    mutationKey: ["update-registration", data.id],
-    onSuccess() {
-      queryClient.invalidateQueries();
-    },
-  });
-
-  const deleteMutation = useMutation({
-    mutationFn: deleteRegistration,
-    mutationKey: ["delete-registration", data.id],
-    onSuccess() {
-      queryClient.invalidateQueries();
-    },
-  });
-
   return (
     <Card>
       <IconAndText>
@@ -50,45 +29,13 @@ export function RegistrationCard({ data }: Props) {
         <span>{data.admissionDate}</span>
       </IconAndText>
       <Actions>
-        <Button.Small
-          onClick={() =>
-            mutation.mutate({
-              registration: data,
-              status: "REPROVED",
-            })
-          }
-          bgcolor="rgb(255, 145, 154)"
-        >
-          Reprovar
-        </Button.Small>
-        <Button.Small
-          onClick={() =>
-            mutation.mutate({
-              registration: data,
-              status: "APPROVED",
-            })
-          }
-          bgcolor="rgb(155, 229, 155)"
-        >
-          Aprovar
-        </Button.Small>
-        <Button.Small
-          onClick={() =>
-            mutation.mutate({
-              registration: data,
-              status: "REVIEW",
-            })
-          }
-          bgcolor="#ff8858"
-        >
-          Revisar novamente
-        </Button.Small>
+        {data.status != "REVIEW" ? (
+          <ReviewedActions registration={data} />
+        ) : (
+          <ReviewerActions registration={data} />
+        )}
 
-        <HiOutlineTrash
-          onClick={() => {
-            deleteMutation.mutate(data.id);
-          }}
-        />
+        <DeleteButton id={data.id} />
       </Actions>
     </Card>
   );

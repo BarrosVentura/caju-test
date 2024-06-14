@@ -30,6 +30,24 @@ export function updateRegistrationStatus({
   );
 }
 
+export function createRegistration({
+  registration,
+}: {
+  registration: Omit<Registration, "id">;
+}) {
+  return api.post(
+    "/registrations",
+    {
+      ...registration,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+}
+
 export function deleteRegistration(id: string) {
   return api.delete(`/registrations/${id}`);
 }

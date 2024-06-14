@@ -4,7 +4,7 @@ import { cpf } from "~/utils/cpf";
 export type RegistrationSchema = z.infer<typeof registrationSchema>;
 
 export const registrationSchema = z.object({
-  nome: z
+  employeeName: z
     .string({
       required_error: "Nome é obrigatório",
     })

@@ -9,9 +9,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { registrationSchema, RegistrationSchema } from "./schema";
 import { ChangeEvent } from "react";
 import { cpf } from "~/utils/cpf";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createRegistration } from "~/services/registrations";
 
 export function NewUserPage() {
   const history = useHistory();
+  const queryClient = useQueryClient();
   const {
     register,
     formState: { errors },
@@ -20,12 +23,27 @@ export function NewUserPage() {
     resolver: zodResolver(registrationSchema),
   });
 
+  const mutation = useMutation({
+    mutationFn: createRegistration,
+    mutationKey: ["create-registration"],
+    onSuccess() {
+      queryClient.invalidateQueries();
+      history.push(routes.dashboard);
+    },
+  });
+
   const goToHome = () => {
     history.push(routes.dashboard);
   };
 
   function handleSendNewRegistration(data: RegistrationSchema) {
     console.log({ data });
+    mutation.mutate({
+      registration: {
+        ...data,
+        status: "REVIEW",
+      },
+    });
   }
 
   return (
@@ -38,8 +56,8 @@ export function NewUserPage() {
           <TextField
             placeholder="Nome"
             label="Nome"
-            {...register("nome")}
-            error={errors["nome"]?.message}
+            {...register("employeeName")}
+            error={errors["employeeName"]?.message}
           />
           <TextField
             placeholder="Email"
@@ -64,7 +82,7 @@ export function NewUserPage() {
             {...register("admissionDate")}
             error={errors["admissionDate"]?.message}
           />
-          <Button.Default onClick={() => {}}>Cadastrar</Button.Default>
+          <Button.Default>Cadastrar</Button.Default>
         </form>
       </Card>
     </Container>

@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { HiOutlineTrash } from "react-icons/hi";
+import { Button } from "~/components/Buttons";
 import { useToastModal } from "~/hooks/useToastModal";
 import { deleteRegistration } from "~/services/registrations";
 
@@ -24,12 +25,14 @@ export function DeleteButton({ id }: { id: string }) {
   });
 
   return (
-    <HiOutlineTrash
+    <Button.Small
       onClick={() => {
         triggerConfirm(id, "Deseja excluir esse registro?", () => {
           deleteMutation.mutate(id);
         });
       }}
-    />
+    >
+      <HiOutlineTrash />
+    </Button.Small>
   );
 }

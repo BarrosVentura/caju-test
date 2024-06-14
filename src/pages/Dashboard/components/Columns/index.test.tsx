@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Columns, Registration } from ".";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { mockQueryClient } from "~/mocks/queryClient";
+import { withMockQueryClient } from "~/mocks/queryClient";
 
 const registrations = [
   {
@@ -16,11 +15,7 @@ const registrations = [
 
 describe("Columns", () => {
   it("should render correctly", () => {
-    render(
-      <QueryClientProvider client={mockQueryClient}>
-        <Columns registrations={registrations} />
-      </QueryClientProvider>
-    );
+    render(withMockQueryClient(<Columns registrations={registrations} />));
 
     expect(screen.getByText(/pronto para revisar/i)).toBeDefined();
     expect(screen.getByText(/aprovado/i)).toBeDefined();

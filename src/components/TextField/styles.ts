@@ -22,5 +22,5 @@ export const Input = styled.input`
 
 export const ErrorSpan = styled.span`
   font-size: 12;
-  color: "red";
+  color: red;
 `;

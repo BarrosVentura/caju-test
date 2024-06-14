@@ -11,7 +11,7 @@ import { CpfSchema, cpfSchema } from "./schema";
 import { useObserveParam } from "~/hooks/useObserveParam";
 import { useQueryClient } from "@tanstack/react-query";
 import { ChangeEvent } from "react";
-import { cpfMask } from "~/utils/cpfMask";
+import { cpf } from "~/utils/cpf";
 
 export function SearchBar() {
   const history = useHistory();
@@ -27,7 +27,7 @@ export function SearchBar() {
   });
 
   const observedCpf = watch("cpf");
-  useObserveParam("cpf", 11, cpfMask.remove(observedCpf));
+  useObserveParam("cpf", 11, cpf.removeMask(observedCpf));
 
   const goToNewAdmissionPage = () => {
     history.push(routes.newUser);
@@ -40,7 +40,7 @@ export function SearchBar() {
         error={errors["cpf"]?.message}
         {...register("cpf", {
           onChange: ({ target }: ChangeEvent<HTMLInputElement>) => {
-            target.value = cpfMask.create(target.value) ?? "";
+            target.value = cpf.createMask(target.value) ?? "";
           },
         })}
       />

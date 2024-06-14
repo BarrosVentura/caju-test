@@ -12,9 +12,11 @@ import { cpf } from "~/utils/cpf";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createRegistration } from "~/services/registrations";
 import toast from "react-hot-toast";
+import { useToastModal } from "~/hooks/useToastModal";
 
 export function NewUserPage() {
   const history = useHistory();
+  const { triggerConfirm } = useToastModal();
   const queryClient = useQueryClient();
   const {
     register,
@@ -44,11 +46,13 @@ export function NewUserPage() {
   };
 
   function handleSendNewRegistration(data: RegistrationSchema) {
-    mutation.mutate({
-      registration: {
-        ...data,
-        status: "REVIEW",
-      },
+    triggerConfirm(data.cpf, "Deseja adicionar esse registro?", () => {
+      mutation.mutate({
+        registration: {
+          ...data,
+          status: "REVIEW",
+        },
+      });
     });
   }
 

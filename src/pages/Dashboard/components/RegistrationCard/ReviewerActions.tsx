@@ -3,19 +3,20 @@ import { Button } from "~/components/Buttons";
 import { updateRegistrationStatus } from "~/services/registrations";
 import { Registration } from "../Columns";
 import toast from "react-hot-toast";
+import { useToastModal } from "~/hooks/useToastModal";
 
 export function ReviewerActions({
   registration,
 }: {
   registration: Registration;
 }) {
+  const { triggerConfirm } = useToastModal();
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: updateRegistrationStatus,
     mutationKey: ["update-registration", registration.id],
     onSuccess() {
       queryClient.invalidateQueries();
-      toast.success("Informação atualizada com sucesso");
     },
     onError() {
       toast.error(
@@ -28,10 +29,16 @@ export function ReviewerActions({
     <>
       <Button.Small
         onClick={() =>
-          mutation.mutate({
-            registration,
-            status: "REPROVED",
-          })
+          triggerConfirm(
+            registration.id,
+            "Deseja reprovar esse registro?",
+            () => {
+              mutation.mutate({
+                registration,
+                status: "REPROVED",
+              });
+            }
+          )
         }
         bgcolor="rgb(255, 145, 154)"
       >
@@ -39,10 +46,16 @@ export function ReviewerActions({
       </Button.Small>
       <Button.Small
         onClick={() =>
-          mutation.mutate({
-            registration,
-            status: "APPROVED",
-          })
+          triggerConfirm(
+            registration.id,
+            "Deseja aprovar esse registro?",
+            () => {
+              mutation.mutate({
+                registration,
+                status: "APPROVED",
+              });
+            }
+          )
         }
         bgcolor="rgb(155, 229, 155)"
       >

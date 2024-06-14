@@ -1,9 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { HiOutlineTrash } from "react-icons/hi";
+import { useToastModal } from "~/hooks/useToastModal";
 import { deleteRegistration } from "~/services/registrations";
 
 export function DeleteButton({ id }: { id: string }) {
+  const { triggerConfirm } = useToastModal();
   const queryClient = useQueryClient();
 
   const deleteMutation = useMutation({
@@ -11,6 +13,7 @@ export function DeleteButton({ id }: { id: string }) {
     mutationKey: ["delete-registration", id],
     onSuccess() {
       queryClient.invalidateQueries();
+      toast.dismiss();
       toast.success("Registro excluído com sucesso");
     },
     onError() {
@@ -23,7 +26,9 @@ export function DeleteButton({ id }: { id: string }) {
   return (
     <HiOutlineTrash
       onClick={() => {
-        deleteMutation.mutate(id);
+        triggerConfirm(id, "Deseja excluir esse registro?", () => {
+          deleteMutation.mutate(id);
+        });
       }}
     />
   );

@@ -17,7 +17,7 @@ export function DashboardPage() {
     meta: {
       error:
         "Tivemos um erro ao buscar os registros, tente novamente mais tarde",
-      success: "Dados carregados com sucesso",
+      success: "Dados atualizados com sucesso",
     },
   });
 

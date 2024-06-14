@@ -3,7 +3,7 @@ import { LoadingWrapper } from "./styles";
 
 export function Loading() {
   return (
-    <LoadingWrapper>
+    <LoadingWrapper title="icone de carregamento">
       <HiOutlineClock />
     </LoadingWrapper>
   );

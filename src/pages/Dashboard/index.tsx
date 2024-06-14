@@ -14,6 +14,11 @@ export function DashboardPage() {
       return getRegistrations(ctx.queryKey[1]);
     },
     queryKey: ["registrations", cpfParam],
+    meta: {
+      error:
+        "Tivemos um erro ao buscar os registros, tente novamente mais tarde",
+      success: "Dados carregados com sucesso",
+    },
   });
 
   return (

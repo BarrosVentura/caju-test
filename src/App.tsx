@@ -2,9 +2,27 @@ import Router from "~/router";
 import Header from "~/components/Header";
 
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  QueryCache,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+import toast, { Toaster } from "react-hot-toast";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  queryCache: new QueryCache({
+    onError(_, query) {
+      if (query?.meta?.error) {
+        toast.error(query.meta.error as string);
+      }
+    },
+    onSuccess(_, query) {
+      if (query?.meta?.success) {
+        toast.success(query.meta.success as string);
+      }
+    },
+  }),
+});
 
 export function App() {
   return (
@@ -15,6 +33,7 @@ export function App() {
       <Router />
 
       <ReactQueryDevtools initialIsOpen={false} />
+      <Toaster />
     </QueryClientProvider>
   );
 }

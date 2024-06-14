@@ -11,6 +11,7 @@ import { ChangeEvent } from "react";
 import { cpf } from "~/utils/cpf";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createRegistration } from "~/services/registrations";
+import toast from "react-hot-toast";
 
 export function NewUserPage() {
   const history = useHistory();
@@ -28,7 +29,13 @@ export function NewUserPage() {
     mutationKey: ["create-registration"],
     onSuccess() {
       queryClient.invalidateQueries();
+      toast.success("Registro adicionado com sucesso");
       history.push(routes.dashboard);
+    },
+    onError() {
+      toast.error(
+        "Não foi possível adicionar o registro nesse momento, tente novamente mais tarde"
+      );
     },
   });
 

@@ -13,7 +13,7 @@ export const TextField = forwardRef(function innerTextField(
   return (
     <div>
       <label htmlFor={id}>{label}</label>
-      <Input ref={ref} {...rest} />
+      <Input id={id} ref={ref} {...rest} />
       <ErrorSpan>{error}</ErrorSpan>
     </div>
   );

@@ -14,25 +14,16 @@ type Props = {
 export function Columns({ registrations }: Props) {
   return (
     <Container>
-      {allColumns.map(({ status, title }) => {
-        return (
-          <Column status={status} key={title}>
-            <>
-              <TitleColumn status={status}>{title}</TitleColumn>
-              <ColumnContent>
-                {filterRegistration(registrations, status)?.map(
-                  (registration) => (
-                    <RegistrationCard
-                      data={registration}
-                      key={registration.id}
-                    />
-                  )
-                )}
-              </ColumnContent>
-            </>
-          </Column>
-        );
-      })}
+      {allColumns.map(({ status, title }) => (
+        <Column status={status} key={title}>
+          <TitleColumn status={status}>{title}</TitleColumn>
+          <ColumnContent>
+            {filterRegistration(registrations, status)?.map((registration) => (
+              <RegistrationCard data={registration} key={registration.id} />
+            ))}
+          </ColumnContent>
+        </Column>
+      ))}
     </Container>
   );
 }

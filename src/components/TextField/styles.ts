@@ -21,6 +21,7 @@ export const Input = styled.input`
 `;
 
 export const ErrorSpan = styled.span`
+  display: block;
   font-size: 12;
   color: red;
 `;

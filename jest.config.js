@@ -10,6 +10,6 @@ export default {
   moduleNameMapper: {
     "^~/(.+)": "<rootDir>/src/$1",
   },
-  setupFiles: ["./src/testSetup.ts", "whatwg-fetch"],
-  //   setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
+  setupFiles: ["./src/test/matchMediaSetup.ts", "whatwg-fetch"],
+  setupFilesAfterEnv: ["./src/test/serverSetup.ts"],
 };

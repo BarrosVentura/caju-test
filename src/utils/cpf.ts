@@ -1,5 +1,5 @@
 function createCpfMask(value?: string) {
-  if (!value) return undefined;
+  if (!value) return "";
   return value
     .replace(/\D/g, "")
     .replace(/(\d{3})(\d)/, "$1.$2")
@@ -9,7 +9,7 @@ function createCpfMask(value?: string) {
 }
 
 function removeCpfMask(value?: string) {
-  if (!value) return undefined;
+  if (!value) return "";
   return value.replace(/\.|-/gm, "").trim();
 }
 
@@ -45,8 +45,13 @@ function isValidCpf(value?: string) {
   return true;
 }
 
+function getCpfFromUrl(locationSearch: string) {
+  return new URLSearchParams(locationSearch).get("cpf") ?? "";
+}
+
 export const cpf = {
   createMask: createCpfMask,
   removeMask: removeCpfMask,
   validate: isValidCpf,
+  getFromURL: getCpfFromUrl,
 };

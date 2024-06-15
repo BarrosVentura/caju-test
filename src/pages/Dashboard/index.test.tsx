@@ -30,4 +30,28 @@ describe("Dashboard", () => {
     expect(userFound).toBeDefined();
     expect(userNotFound).toBeNull();
   });
+
+  it("should be able to refetch", async () => {
+    const user = userEvent.setup();
+    const renderContent = withMockQueryClient(
+      withMockRouterDom(<DashboardPage />)
+    );
+    const { rerender } = render(renderContent);
+
+    const input = screen.getByPlaceholderText(/digite um cpf válido/i);
+
+    await user.type(input, "43791924079");
+
+    rerender(renderContent);
+
+    const button = screen.getByLabelText(/refetch/i);
+
+    await user.click(button);
+
+    const userFound1 = await waitFor(() => screen.getByText(/filipe marins/i));
+    const userFound2 = screen.getByText(/luiz filho/i);
+
+    expect(userFound1).toBeDefined();
+    expect(userFound2).toBeDefined();
+  });
 });

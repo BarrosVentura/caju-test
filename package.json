@@ -9,7 +9,8 @@
     "build": "tsc && vite build",
     "test:dev": "jest --watch --verbose --no-cache",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.6.0",

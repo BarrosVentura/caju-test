@@ -29,7 +29,6 @@ export const handlers = [
       const filteredResponse = defaultResponse.filter(
         (item) => item.cpf == cpf
       );
-      console.log({ filteredResponse });
       return res(ctx.status(200), ctx.json(filteredResponse));
     }
 

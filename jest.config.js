@@ -11,5 +11,5 @@ export default {
     "^~/(.+)": "<rootDir>/src/$1",
   },
   setupFiles: ["./src/test/matchMediaSetup.ts", "whatwg-fetch"],
-  setupFilesAfterEnv: ["./src/test/serverSetup.ts"],
+  setupFilesAfterEnv: ["./src/test/serverSetup.ts", "./src/test/querySetup.ts"],
 };

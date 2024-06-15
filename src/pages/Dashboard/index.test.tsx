@@ -3,6 +3,7 @@ import { withMockQueryClient } from "~/mocks/queryClient";
 import { withMockRouterDom } from "~/mocks/routerDom";
 import { DashboardPage } from ".";
 import userEvent from "@testing-library/user-event";
+import { withToast } from "~/mocks/toaster";
 
 describe("Dashboard", () => {
   it("should render correctly with content", async () => {
@@ -53,5 +54,114 @@ describe("Dashboard", () => {
 
     expect(userFound1).toBeDefined();
     expect(userFound2).toBeDefined();
+  });
+
+  it("should be able to delete a card", async () => {
+    const user = userEvent.setup();
+    const renderContent = withMockQueryClient(
+      withMockRouterDom(withToast(<DashboardPage />))
+    );
+    render(renderContent);
+
+    const buttons = await waitFor(() =>
+      screen.getAllByTitle(/deletar registro/i)
+    );
+
+    await user.click(buttons[0]);
+
+    const yesButton = screen.getByRole("button", {
+      name: /sim/i,
+    });
+
+    await user.click(yesButton);
+
+    const toastContent = await waitFor(() =>
+      screen.getByText(/registro excluído com sucesso/i)
+    );
+
+    expect(toastContent).toBeDefined();
+  });
+
+  it("should be able to reprove a card", async () => {
+    const user = userEvent.setup();
+    const renderContent = withMockQueryClient(
+      withMockRouterDom(withToast(<DashboardPage />))
+    );
+    render(renderContent);
+
+    const button = await waitFor(() =>
+      screen.getByRole("button", {
+        name: /reprovar/i,
+      })
+    );
+
+    await user.click(button);
+
+    const yesButton = screen.getByRole("button", {
+      name: /sim/i,
+    });
+
+    await user.click(yesButton);
+
+    const toastContent = await waitFor(() =>
+      screen.getByText(/dados atualizados com sucesso/i)
+    );
+
+    expect(toastContent).toBeDefined();
+  });
+
+  it("should be able to reprove a card", async () => {
+    const user = userEvent.setup();
+    const renderContent = withMockQueryClient(
+      withMockRouterDom(withToast(<DashboardPage />))
+    );
+    render(renderContent);
+
+    const button = await waitFor(() =>
+      screen.getByRole("button", {
+        name: /aprovar/i,
+      })
+    );
+
+    await user.click(button);
+
+    const yesButton = screen.getByRole("button", {
+      name: /sim/i,
+    });
+
+    await user.click(yesButton);
+
+    const toastContent = await waitFor(() =>
+      screen.getByText(/dados atualizados com sucesso/i)
+    );
+
+    expect(toastContent).toBeDefined();
+  });
+  it("should be able to review again a card", async () => {
+    const user = userEvent.setup();
+    const renderContent = withMockQueryClient(
+      withMockRouterDom(withToast(<DashboardPage />))
+    );
+    render(renderContent);
+
+    const button = await waitFor(() =>
+      screen.getByRole("button", {
+        name: /revisar novamente/i,
+      })
+    );
+
+    await user.click(button);
+
+    const yesButton = screen.getByRole("button", {
+      name: /sim/i,
+    });
+
+    await user.click(yesButton);
+
+    const toastContent = await waitFor(() =>
+      screen.getByText(/dados atualizados com sucesso/i)
+    );
+
+    expect(toastContent).toBeDefined();
   });
 });

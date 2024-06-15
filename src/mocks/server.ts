@@ -34,7 +34,10 @@ export const handlers = [
 
     return res(ctx.status(200), ctx.json(defaultResponse));
   }),
-  rest.put(`${BASE_URL}/registrations`, (_, res, ctx) => {
+  rest.put(`${BASE_URL}/registrations/:id`, (_, res, ctx) => {
+    return res(ctx.status(200));
+  }),
+  rest.delete(`${BASE_URL}/registrations/:id`, (_, res, ctx) => {
     return res(ctx.status(200));
   }),
 ];

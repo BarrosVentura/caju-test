@@ -2,11 +2,11 @@ import { render, screen } from "@testing-library/react";
 import { DeleteButton } from "./DeleteButton";
 import { withMockQueryClient } from "~/mocks/queryClient";
 import userEvent from "@testing-library/user-event";
-import { Toaster } from "react-hot-toast";
 import { ReviewedActions } from "./ReviewedActions";
 import { Registration } from "../Columns";
 import { ReviewerActions } from "./ReviewerActions";
 import { RegistrationCard } from ".";
+import { withToast } from "~/mocks/toaster";
 
 const registration = {
   admissionDate: "22/10/2023",
@@ -27,14 +27,7 @@ describe("DeleteButton", () => {
 
   it("should open modal on button click", async () => {
     const user = userEvent.setup();
-    render(
-      withMockQueryClient(
-        <>
-          <DeleteButton id="123" key={1} />
-          <Toaster />
-        </>
-      )
-    );
+    render(withMockQueryClient(withToast(<DeleteButton id="123" key={1} />)));
 
     const button = screen.getByRole("button");
 
@@ -60,10 +53,7 @@ describe("ReviewedActions", () => {
     const user = userEvent.setup();
     render(
       withMockQueryClient(
-        <>
-          <ReviewedActions registration={registration} />
-          <Toaster />
-        </>
+        withToast(<ReviewedActions registration={registration} />)
       )
     );
     const button = screen.getByRole("button", {
@@ -96,10 +86,7 @@ describe("ReviewerActions", () => {
     const user = userEvent.setup();
     render(
       withMockQueryClient(
-        <>
-          <ReviewerActions registration={registration} />
-          <Toaster />
-        </>
+        withToast(<ReviewerActions registration={registration} />)
       )
     );
     const button = screen.getByRole("button", {
@@ -115,10 +102,7 @@ describe("ReviewerActions", () => {
     const user = userEvent.setup();
     render(
       withMockQueryClient(
-        <>
-          <ReviewerActions registration={registration} />
-          <Toaster />
-        </>
+        withToast(<ReviewerActions registration={registration} />)
       )
     );
     const button = screen.getByRole("button", {

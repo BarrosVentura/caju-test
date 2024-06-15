@@ -26,6 +26,7 @@ export function DeleteButton({ id }: { id: string }) {
 
   return (
     <Button.Small
+      title="deletar registro"
       onClick={() => {
         triggerConfirm(id, "Deseja excluir esse registro?", () => {
           deleteMutation.mutate(id);

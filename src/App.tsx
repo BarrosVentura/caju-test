@@ -10,6 +10,11 @@ import {
 import toast, { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
   queryCache: new QueryCache({
     onError(_, query) {
       if (query?.meta?.error) {

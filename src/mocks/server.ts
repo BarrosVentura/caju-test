@@ -1,6 +1,6 @@
 import { rest } from "msw";
 
-const BASE_URL = "http://localhost:3000";
+export const BASE_URL = "http://localhost:3000";
 
 const defaultResponse = [
   {
@@ -39,5 +39,8 @@ export const handlers = [
   }),
   rest.delete(`${BASE_URL}/registrations/:id`, (_, res, ctx) => {
     return res(ctx.status(200));
+  }),
+  rest.post(`${BASE_URL}/registrations`, (_, res, ctx) => {
+    return res(ctx.status(201));
   }),
 ];

@@ -66,12 +66,14 @@ export function NewUserPage() {
           <TextField
             placeholder="Nome"
             label="Nome"
+            id="Nome"
             {...register("employeeName")}
             error={errors["employeeName"]?.message}
           />
           <TextField
             placeholder="Email"
             label="Email"
+            id="Email"
             type="email"
             {...register("email")}
             error={errors["email"]?.message}
@@ -79,6 +81,7 @@ export function NewUserPage() {
           <TextField
             placeholder="CPF"
             label="CPF"
+            id="CPF"
             {...register("cpf", {
               onChange: ({ target }: ChangeEvent<HTMLInputElement>) => {
                 target.value = cpf.createMask(target.value) ?? "";
@@ -89,6 +92,7 @@ export function NewUserPage() {
           <TextField
             label="Data de admissão"
             type="date"
+            id="data"
             {...register("admissionDate")}
             error={errors["admissionDate"]?.message}
           />

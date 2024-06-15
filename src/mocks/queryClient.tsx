@@ -5,6 +5,7 @@ export const mockQueryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: Infinity,
+      retry: false,
     },
   },
 });

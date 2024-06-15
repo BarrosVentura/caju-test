@@ -8,7 +8,6 @@ import { cpf } from "~/utils/cpf";
 
 export function DashboardPage() {
   const location = useLocation();
-
   const { data } = useQuery({
     queryFn(ctx) {
       return getRegistrations(ctx.queryKey[1]);

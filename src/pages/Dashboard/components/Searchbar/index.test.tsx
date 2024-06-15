@@ -55,4 +55,16 @@ describe("SearchBar", () => {
 
     expect(errorSpan).toBeDefined();
   });
+
+  it("should be able to catch cpf from url", () => {
+    render(
+      withMockQueryClient(
+        withMockRouterDom(<SearchBar />, "/dashboard?cpf=83361874050")
+      )
+    );
+
+    const input = screen.getByPlaceholderText(/digite um cpf válido/i);
+
+    expect(input).toHaveProperty("value", "833.618.740-50");
+  });
 });

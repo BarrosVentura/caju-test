@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "~/components/Buttons";
 import { PageDecoratorQueries } from "~/decorators/decorator";
-import { Columns } from "~/pages/Dashboard/components/Columns";
+import { Columns, Registration } from "~/pages/Dashboard/components/Columns";
 
 const defaultResponse = [
   {
@@ -20,7 +19,7 @@ const defaultResponse = [
     status: "REVIEW",
     cpf: "43791924079",
   },
-];
+] satisfies Registration[];
 
 const meta = {
   title: "Dashboard/Components/Columns",
@@ -31,7 +30,7 @@ const meta = {
   },
   tags: ["autodocs"],
   args: { registrations: defaultResponse },
-} satisfies Meta<typeof Button.Default>;
+} satisfies Meta<typeof Columns>;
 
 export default meta;
 

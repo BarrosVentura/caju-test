@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { Button } from "~/components/Buttons";
 import { TextField } from "~/components/TextField";
 
 const meta = {
@@ -19,7 +18,7 @@ const meta = {
     },
   },
   args: { onChange: fn(), label: "What is your name?" },
-} satisfies Meta<typeof Button.Default>;
+} satisfies Meta<typeof TextField>;
 
 export default meta;
 

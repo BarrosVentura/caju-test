@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "~/components/Buttons";
 import { PageDecoratorQueries } from "~/decorators/decorator";
 import { RegistrationCard } from "~/pages/Dashboard/components/RegistrationCard";
 
@@ -31,7 +30,7 @@ const meta = {
   },
   tags: ["autodocs"],
   args: { data: defaultResponse[0] },
-} satisfies Meta<typeof Button.Default>;
+} satisfies Meta<typeof RegistrationCard>;
 
 export default meta;
 

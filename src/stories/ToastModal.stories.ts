@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "~/components/Buttons";
 import { ToastModal } from "~/components/ToastModal";
 
 const meta = {
@@ -10,7 +9,7 @@ const meta = {
   },
   tags: ["autodocs"],
   args: { children: "content changed" },
-} satisfies Meta<typeof Button.Default>;
+} satisfies Meta<typeof ToastModal>;
 
 export default meta;
 

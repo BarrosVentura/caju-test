@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+.eslintcache
 
 # Editor directories and files
 .vscode/*
@@ -25,4 +26,10 @@ dist-ssr
 
 # Tests
 coverage
+
+# Storybook
 *storybook.log
+storybook-static
+
+# Cache
+.yarn/install-state.gz

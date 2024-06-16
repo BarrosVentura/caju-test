@@ -24,6 +24,7 @@ export function SearchBar() {
     formState: { errors },
     setValue,
     handleSubmit,
+    clearErrors
   } = useForm<CpfSchema>({
     resolver: zodResolver(cpfSchema),
   });
@@ -64,6 +65,7 @@ export function SearchBar() {
           onClick={() => {
             queryClient.invalidateQueries();
             setValue("cpf", "");
+            clearErrors("cpf")
             history.replace(routes.dashboard);
           }}
         >

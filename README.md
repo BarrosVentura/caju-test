@@ -21,3 +21,28 @@ Ele está dividido no mesmo sistema do aplicativo, com os componentes básicos, 
 Pode acessar [aqui](https://luxury-swan-7a534e.netlify.app/#/dashboard)
 
 Para rodar o conteúdo do servidor, é necessario instalar o projeto e rodando o `yarn init:db`, assim será possivel ver o conteúdo em tela.
+
+## Testes
+Atualmente com cobertura de 97% do projeto, os testes unitários foram feitos com jest e react-testing-library
+
+[Testes unitários / integração](.github/testes-caju.png)
+
+## Situações
+
+Abaixo, temos GIFs das ações geradas dentro do aplicativo e os seus acontecimentos.
+
+### Dashboard | Ações de Cards
+
+[Trabalhando com Cards](.github/tela-inicial-acoes-card.gif)
+
+### Dashboard | Busca CPF
+
+[Buscando cpf](.github/tela-inicial-busca-cpf.gif)
+
+### Formulário | Adicionando registro
+
+[Adicionando registro](.github/tela-form-adicionando-registro.gif)
+
+### Formulário | Cenários de erro
+
+[Erros no formulário](.github/tela-form-com-erros.gif)

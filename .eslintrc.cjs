@@ -10,6 +10,7 @@ module.exports = {
     "eslint-config-prettier",
     "plugin:react-hooks/recommended",
     "plugin:@tanstack/eslint-plugin-query/recommended",
+    "plugin:storybook/recommended"
   ],
   settings: {
     react: {
